@@ -1,9 +1,9 @@
 class Xcresulttool < Formula
   desc "This tool will convert xcode report into JSON. Later on PDF support will be added"
   homepage "https://github.com/shahidlatif2021/xcresultformula"
-  version "1.0.2"
-  url "https://github.com/shahidlatif2021/xcresultformula/releases/download/v1.0.2/XCResultParser.tar.gz"
-  sha256 "f29045f5c41fe23607b3d62841a51135961442e93d18299e543e1f792d8b7c13"
+  version "1.0.4"
+  url "https://github.com/shahidlatif2021/homebrew-xcresultformula/releases/download/v1.0.4/XCResultParser.tar.gz"
+  sha256 "e4ed027e5ea7309ad8c2b42c37ef6b836ad9050fac9b0bcfc2d34ea2d833fc2b"
   license "MIT"
 
 
