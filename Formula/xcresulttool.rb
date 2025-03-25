@@ -6,7 +6,6 @@ class Xcresulttool < Formula
   sha256 "f29045f5c41fe23607b3d62841a51135961442e93d18299e543e1f792d8b7c13"
   license "MIT"
 
-  depends_on "swift" # If your app depends on Swift
 
   def install
     bin.install "XCResultParser"
