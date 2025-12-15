@@ -3,7 +3,7 @@ class Xcresulttool < Formula
   homepage "https://github.com/shahidlatif2021/xcresultformula"
   version "2.0.9"
   url "https://github.com/shahidlatif2021/homebrew-xcresultformula/releases/download/v2.0.9/XCResultParser.tar.gz"
-  sha256 "642cbdad2fef564c70a71e2563dcc24ae5122b80567bb4452be33bb1b58fab4e"
+  sha256 "1deceaf4bc6867d7c00fe2077f8b2aa630a2061954d33c43b4485388984527df"
   license "MIT"
 
 
