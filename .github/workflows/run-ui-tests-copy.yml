@@ -1,0 +1,55 @@
+name: Run UI Tests (Copy)
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run the workflow on'
+        required: true
+        default: 'main'
+
+  workflow_run:
+    workflows: ["Dev Build to TestFlight (Copy)"]
+    types:
+      - completed
+
+concurrency:
+  group: ui-tests-copy
+  cancel-in-progress: false
+
+jobs:
+  run-ui-tests:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: Echo trigger info
+        run: |
+          echo "Run UI Tests (Copy) triggered"
+          echo "event_name: ${{ github.event_name }}"
+          echo "workflow_run.name: ${{ github.event.workflow_run.name }}"
+          echo "workflow_run.conclusion: ${{ github.event.workflow_run.conclusion }}"
+          echo "workflow_run.id: ${{ github.event.workflow_run.id }}"
+          echo "workflow_run.head_branch: ${{ github.event.workflow_run.head_branch }}"
+
+      - name: Download branch info from artifact
+        if: ${{ github.event_name == 'workflow_run' }}
+        uses: actions/download-artifact@v4
+        with:
+          name: branch-info
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Echo extracted branch
+        if: ${{ github.event_name == 'workflow_run' }}
+        run: |
+          if [ -f branch_info.txt ]; then
+            echo "Branch from artifact: $(cat branch_info.txt)"
+          else
+            echo "branch_info.txt not found, falling back to head_branch: ${{ github.event.workflow_run.head_branch }}"
+          fi
+
+      - name: Echo simulated UI test run
+        run: |
+          echo "Pretending to run UI tests..."
+          echo "Run UI Tests (Copy) finished"

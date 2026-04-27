@@ -1,0 +1,50 @@
+name: Dev Build to TestFlight (Copy)
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump_type:
+        description: 'Version Bump Type'
+        required: true
+        default: Minor
+        type: choice
+        options:
+          - Major
+          - Minor
+          - Patch
+
+permissions:
+  contents: read
+
+jobs:
+  build_and_upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Echo build start
+        run: |
+          echo "Dev Build to TestFlight (Copy) started"
+          echo "Triggered on ref: ${{ github.ref_name }}"
+          echo "bump_type input: ${{ inputs.bump_type }}"
+
+      - name: Echo simulated build steps
+        run: |
+          echo "Step 1: pretend to checkout"
+          echo "Step 2: pretend to configure keychain"
+          echo "Step 3: pretend to bump version"
+          echo "Step 4: pretend to build and upload to TestFlight"
+
+      - name: Save branch info for UI tests
+        run: |
+          echo "${{ github.ref_name }}" > branch_info.txt
+          echo "Branch saved for UI tests: ${{ github.ref_name }}"
+
+      - name: Upload branch artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: branch-info
+          path: branch_info.txt
+          retention-days: 1
+
+      - name: Echo build done
+        run: echo "Dev Build to TestFlight (Copy) finished — run-ui-tests-copy should now trigger via workflow_run"
